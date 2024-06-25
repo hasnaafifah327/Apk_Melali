@@ -126,6 +126,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_tiket_bus"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
@@ -144,7 +145,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pesan Tiket Bus"
+                android:text="Tiket Bus"
                 android:textColor="@android:color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp" />

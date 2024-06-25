@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WisataAdapter extends RecyclerView.Adapter<WisataAdapter.WisataViewHolder> {
+public class DeskripsiWisataAdapter extends RecyclerView.Adapter<DeskripsiWisataAdapter.WisataViewHolder> {
 
     private List<Wisata1> wisataList;
     private List<Wisata1> wisataListFull;
 
-    public WisataAdapter(List<Wisata1> wisataList) {
+    public DeskripsiWisataAdapter(List<Wisata1> wisataList) {
         this.wisataList = wisataList;
         wisataListFull = new ArrayList<>(wisataList);
     }

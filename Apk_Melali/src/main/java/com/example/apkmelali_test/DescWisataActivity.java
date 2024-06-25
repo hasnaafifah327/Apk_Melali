@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DescWisataActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private WisataAdapter wisataAdapter;
+    private DeskripsiWisataAdapter wisataAdapter;
     private SearchView searchView;
     private ImageButton backButton;
 
@@ -36,7 +36,7 @@ public class DescWisataActivity extends AppCompatActivity {
         wisataList.add(new Wisata1("Pantai Pandawa", "Description 5", R.drawable.pandawa));
         wisataList.add(new Wisata1("Pantai Jimbaran", "Description 5", R.drawable.pantai_jimbaran));
 
-        wisataAdapter = new WisataAdapter(wisataList);
+        wisataAdapter = new DeskripsiWisataAdapter(wisataList);
         recyclerView.setAdapter(wisataAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

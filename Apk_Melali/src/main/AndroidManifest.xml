@@ -39,10 +39,10 @@
             android:exported="true" />
 
         <activity
-            android:name=".TicketListView"
+            android:name=".TiketWisataListView"
             android:exported="false" />
         <activity
-            android:name=".CustomListView"
+            android:name=".CustomListView_TiketWisata"
             android:exported="false" />
         <activity
             android:name=".DetailTiketWisata"
@@ -50,6 +50,21 @@
         <activity
             android:name=".PesanTiketWisata"
             android:exported="false" />
+
+        <activity
+            android:name=".TiketBusListView"
+            android:exported="false" />
+        <activity
+            android:name=".CustomListView_TiketBus"
+            android:exported="false" />
+        <activity
+            android:name=".DetailTiketBus"
+            android:exported="false" />
+        <activity
+            android:name=".PesanTiketBus"
+            android:exported="false" />
+
+
 
     </application>
 </manifest>

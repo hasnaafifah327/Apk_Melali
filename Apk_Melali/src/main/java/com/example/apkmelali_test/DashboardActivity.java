@@ -23,5 +23,11 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent2 = new Intent(DashboardActivity.this, PesanTiketWisata.class);
             startActivity(intent2);
         });
+
+        LinearLayout menu_pesan_tiket_bus = findViewById(R.id.btn_tiket_bus);
+        menu_pesan_tiket_bus.setOnClickListener(v -> {
+            Intent intent2 = new Intent(DashboardActivity.this, PesanTiketBus.class);
+            startActivity(intent2);
+        });
     }
 }

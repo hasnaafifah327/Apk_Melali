@@ -13,12 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PesanTiketWisata extends AppCompatActivity {
+public class PesanTiketBus extends AppCompatActivity {
 
     private ListView customListView;
-    private CustomAdapter_TiketWisata customAdapter;
-    private List<Wisata2> wisataList;
-    private List<Wisata2> filteredWisataList;
+    private CustomAdapter_TiketBus customAdapter;
+    private List<Bus> busList;
+    private List<Bus> filteredBusList;
     private TextView totalTiketTextView;
     private Button checkoutButton;
     private SearchView simpleSearchView;
@@ -26,7 +26,7 @@ public class PesanTiketWisata extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pesan_tiket_wisata);
+        setContentView(R.layout.activity_pesan_tiket_bus);
 
         customListView = findViewById(R.id.customListView);
         totalTiketTextView = findViewById(R.id.totalTiket);
@@ -36,7 +36,7 @@ public class PesanTiketWisata extends AppCompatActivity {
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PesanTiketWisata.this, DetailTiketWisata.class);
+                Intent intent = new Intent(PesanTiketBus.this, DetailTiketBus.class);
                 ArrayList<String> selectedTickets = getSelectedTickets();
                 intent.putExtra("SELECTED_TICKETS", selectedTickets);
                 startActivity(intent);
@@ -44,16 +44,16 @@ public class PesanTiketWisata extends AppCompatActivity {
         });
 
         // Initialize wisata list
-        wisataList = new ArrayList<>();
-        wisataList.add(new Wisata2(R.drawable.tanah_lot, "Wisata Tanah Lot", "Kabupaten Tabanan, Bali", 50000));
-        wisataList.add(new Wisata2(R.drawable.sanur, "Pantai Sanur", "Denpasar Selatan, Bali", 60000));
-        wisataList.add(new Wisata2(R.drawable.pura_uluwatu, "Pura Luhur Uluwatu", "Kuta Selatan, Kab. Badung, Bali", 70000));
+        busList = new ArrayList<>();
+        busList.add(new Bus(R.drawable.bus1, "BUS A", "Tabanan-Uluwatu", 50000));
+        busList.add(new Bus(R.drawable.bus2, "BUS B", "Denpasar-Ubud", 60000));
+        busList.add(new Bus(R.drawable.bus3, "BUS C", "Jimbaran-Ubud", 70000));
 
         // Copy the wisata list to the filtered list
-        filteredWisataList = new ArrayList<>(wisataList);
+        filteredBusList = new ArrayList<>(busList);
 
         // Set up adapter
-        customAdapter = new CustomAdapter_TiketWisata(this, R.layout.activity_custom_tiket_wisata_list_view, filteredWisataList, totalTiketTextView);
+        customAdapter = new CustomAdapter_TiketBus(this, R.layout.activity_custom_tiket_bus_list_view, filteredBusList, totalTiketTextView);
         customListView.setAdapter(customAdapter);
 
         // Set up search view
@@ -72,14 +72,14 @@ public class PesanTiketWisata extends AppCompatActivity {
     }
 
     private void filter(String text) {
-        filteredWisataList.clear();
+        filteredBusList.clear();
         if (text.isEmpty()) {
-            filteredWisataList.addAll(wisataList);
+            filteredBusList.addAll(busList);
         } else {
             text = text.toLowerCase();
-            for (Wisata2 wisata : wisataList) {
-                if (wisata.getTitle().toLowerCase().contains(text)) {
-                    filteredWisataList.add(wisata);
+            for (Bus bus : busList) {
+                if (bus.getTitle().toLowerCase().contains(text)) {
+                    filteredBusList.add(bus);
                 }
             }
         }
@@ -88,9 +88,9 @@ public class PesanTiketWisata extends AppCompatActivity {
 
     private ArrayList<String> getSelectedTickets() {
         ArrayList<String> selectedTickets = new ArrayList<>();
-        for (Wisata2 wisata : wisataList) {
-            if (wisata.getQuantity() > 0) {
-                selectedTickets.add(wisata.getTitle() + " - Rp. " + wisata.getSubTotalPrice());
+        for (Bus bus : busList) {
+            if (bus.getQuantity() > 0) {
+                selectedTickets.add(bus.getTitle() + " - Rp. " + bus.getSubTotalPrice());
             }
         }
         return selectedTickets;

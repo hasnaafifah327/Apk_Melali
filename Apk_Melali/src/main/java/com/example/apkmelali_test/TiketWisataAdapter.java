@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class TicketAdapter extends BaseAdapter {
+public class TiketWisataAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<String> tickets;
 
-    public TicketAdapter(Context context, ArrayList<String> tickets) {
+    public TiketWisataAdapter(Context context, ArrayList<String> tickets) {
         this.context = context;
         this.tickets = tickets;
     }
@@ -36,7 +36,7 @@ public class TicketAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_ticket_list_view, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_tiket_wisata_list_view, parent, false);
         }
 
         TextView titleView = convertView.findViewById(R.id.titleView);

@@ -14,19 +14,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class DetailTiketWisata extends AppCompatActivity {
+public class DetailTiketBus extends AppCompatActivity {
 
     private ImageButton backButton;
     private ListView customTicketView;
-    private TiketWisataAdapter ticketAdapter;
+    private TiketBusAdapter tiketBusAdapter;
     private TextView totalTiket; // tambahkan TextView totalTiket
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detail_tiket_wisata);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        setContentView(R.layout.activity_detail_tiket_bus);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_detailtiketbus), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -37,18 +37,18 @@ public class DetailTiketWisata extends AppCompatActivity {
         totalTiket = findViewById(R.id.totalTiket); // inisialisasi totalTiket
 
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(DetailTiketWisata.this, PesanTiketWisata.class);
+            Intent intent = new Intent(DetailTiketBus.this, PesanTiketBus.class);
             startActivity(intent);
         });
 
         Intent intent = getIntent();
         ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
 
-        ticketAdapter = new TiketWisataAdapter(this, selectedTickets);
-        customTicketView.setAdapter(ticketAdapter);
+        tiketBusAdapter = new TiketBusAdapter(this, selectedTickets);
+        customTicketView.setAdapter(tiketBusAdapter);
 
         // Mengambil total harga dari TicketAdapter
-        int totalPrice = ticketAdapter.calculateTotalPrice();
+        int totalPrice = tiketBusAdapter.calculateTotalPrice();
         // Menetapkan total harga ke TextView totalTiket
         totalTiket.setText("Total : Rp. " + totalPrice);
     }
