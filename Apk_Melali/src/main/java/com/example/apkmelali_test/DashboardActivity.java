@@ -14,7 +14,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         LinearLayout menu_desc_wisata = findViewById(R.id.btn_deskripsi_wisata);
         menu_desc_wisata.setOnClickListener(v -> {
-            Intent intent1 = new Intent(DashboardActivity.this, DescWisataActivity.class);
+            Intent intent1 = new Intent(DashboardActivity.this, DeskripsiWisataActivity.class);
             startActivity(intent1);
         });
 
@@ -26,8 +26,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         LinearLayout menu_pesan_tiket_bus = findViewById(R.id.btn_tiket_bus);
         menu_pesan_tiket_bus.setOnClickListener(v -> {
-            Intent intent2 = new Intent(DashboardActivity.this, PesanTiketBus.class);
-            startActivity(intent2);
+            Intent intent3 = new Intent(DashboardActivity.this, PesanTiketBus.class);
+            startActivity(intent3);
+        });
+
+        LinearLayout menu_artikel = findViewById(R.id.btn_artikel);
+         menu_artikel.setOnClickListener(v -> {
+            Intent intent4 = new Intent(DashboardActivity.this, ArtikelActivity.class);
+            startActivity(intent4);
         });
     }
 }

@@ -15,10 +15,10 @@ public class CustomAdapter_TiketWisata extends BaseAdapter {
 
     private Context context;
     private int layout;
-    private List<Wisata2> wisataList;
+    private List<Wisata> wisataList;
     private TextView totalTiketTextView;
 
-    public CustomAdapter_TiketWisata(Context context, int layout, List<Wisata2> wisataList, TextView totalTiketTextView) {
+    public CustomAdapter_TiketWisata(Context context, int layout, List<Wisata> wisataList, TextView totalTiketTextView) {
         this.context = context;
         this.layout = layout;
         this.wisataList = wisataList;
@@ -58,7 +58,7 @@ public class CustomAdapter_TiketWisata extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Wisata2 wisata = wisataList.get(position);
+        Wisata wisata = wisataList.get(position);
         holder.imageIcon.setImageResource(wisata.getImage());
         holder.textTitle.setText(wisata.getTitle());
         holder.textSubtitle.setText(wisata.getSubtitle());
@@ -86,7 +86,7 @@ public class CustomAdapter_TiketWisata extends BaseAdapter {
 
     public int calculateTotalPrice() {
         int totalPrice = 0;
-        for (Wisata2 wisata : wisataList) {
+        for (Wisata wisata : wisataList) {
             wisata.setSubTotalPrice(wisata.getQuantity(), wisata.getPrice());
             totalPrice += wisata.getSubTotalPrice();
         }

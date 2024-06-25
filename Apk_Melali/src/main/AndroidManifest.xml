@@ -35,36 +35,38 @@
             android:exported="true" />
 
         <activity
-            android:name=".DescWisataActivity"
+            android:name=".DeskripsiWisataActivity"
             android:exported="true" />
 
         <activity
             android:name=".TiketWisataListView"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CustomListView_TiketWisata"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DetailTiketWisata"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".PesanTiketWisata"
-            android:exported="false" />
+            android:exported="true" />
 
         <activity
             android:name=".TiketBusListView"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CustomListView_TiketBus"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DetailTiketBus"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".PesanTiketBus"
-            android:exported="false" />
+            android:exported="true" />
 
-
+        <activity
+            android:name=".ArtikelActivity"
+            android:exported="true" />
 
     </application>
 </manifest>

@@ -17,8 +17,8 @@ public class PesanTiketWisata extends AppCompatActivity {
 
     private ListView customListView;
     private CustomAdapter_TiketWisata customAdapter;
-    private List<Wisata2> wisataList;
-    private List<Wisata2> filteredWisataList;
+    private List<Wisata> wisataList;
+    private List<Wisata> filteredWisataList;
     private TextView totalTiketTextView;
     private Button checkoutButton;
     private SearchView simpleSearchView;
@@ -45,9 +45,9 @@ public class PesanTiketWisata extends AppCompatActivity {
 
         // Initialize wisata list
         wisataList = new ArrayList<>();
-        wisataList.add(new Wisata2(R.drawable.tanah_lot, "Wisata Tanah Lot", "Kabupaten Tabanan, Bali", 50000));
-        wisataList.add(new Wisata2(R.drawable.sanur, "Pantai Sanur", "Denpasar Selatan, Bali", 60000));
-        wisataList.add(new Wisata2(R.drawable.pura_uluwatu, "Pura Luhur Uluwatu", "Kuta Selatan, Kab. Badung, Bali", 70000));
+        wisataList.add(new Wisata(R.drawable.tanah_lot, "Wisata Tanah Lot", "Kabupaten Tabanan, Bali", 50000));
+        wisataList.add(new Wisata(R.drawable.sanur, "Pantai Sanur", "Denpasar Selatan, Bali", 60000));
+        wisataList.add(new Wisata(R.drawable.pura_uluwatu, "Pura Luhur Uluwatu", "Kuta Selatan, Kab. Badung, Bali", 70000));
 
         // Copy the wisata list to the filtered list
         filteredWisataList = new ArrayList<>(wisataList);
@@ -77,7 +77,7 @@ public class PesanTiketWisata extends AppCompatActivity {
             filteredWisataList.addAll(wisataList);
         } else {
             text = text.toLowerCase();
-            for (Wisata2 wisata : wisataList) {
+            for (Wisata wisata : wisataList) {
                 if (wisata.getTitle().toLowerCase().contains(text)) {
                     filteredWisataList.add(wisata);
                 }
@@ -88,7 +88,7 @@ public class PesanTiketWisata extends AppCompatActivity {
 
     private ArrayList<String> getSelectedTickets() {
         ArrayList<String> selectedTickets = new ArrayList<>();
-        for (Wisata2 wisata : wisataList) {
+        for (Wisata wisata : wisataList) {
             if (wisata.getQuantity() > 0) {
                 selectedTickets.add(wisata.getTitle() + " - Rp. " + wisata.getSubTotalPrice());
             }

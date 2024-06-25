@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeskripsiWisataAdapter extends RecyclerView.Adapter<DeskripsiWisataAdapter.WisataViewHolder> {
+public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.WisataViewHolder> {
 
-    private List<DeskripsiWisata> wisataList;
-    private List<DeskripsiWisata> wisataListFull;
+    private List<Artikel> artikelList;
+    private List<Artikel> artikelListFull;
 
-    public DeskripsiWisataAdapter(List<DeskripsiWisata> wisataList) {
-        this.wisataList = wisataList;
-        wisataListFull = new ArrayList<>(wisataList);
+    public ArtikelAdapter(List<Artikel> artikelList) {
+        this.artikelList = artikelList;
+        artikelListFull = new ArrayList<>(artikelList);
     }
 
     @NonNull
@@ -32,15 +32,15 @@ public class DeskripsiWisataAdapter extends RecyclerView.Adapter<DeskripsiWisata
 
     @Override
     public void onBindViewHolder(@NonNull WisataViewHolder holder, int position) {
-        DeskripsiWisata wisata = wisataList.get(position);
-        holder.imageViewWisata.setImageResource(wisata.getImageResId());
-        holder.judul_wisata.setText(wisata.getTitle());
-        holder.deskripsi_wisata.setText(wisata.getDescription());
+        Artikel artikel = artikelList.get(position);
+        holder.imageViewWisata.setImageResource(artikel.getImageResId());
+        holder.judul_wisata.setText(artikel.getTitle());
+        holder.deskripsi_wisata.setText(artikel.getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return wisataList.size();
+        return artikelList.size();
     }
 
     public static class WisataViewHolder extends RecyclerView.ViewHolder {
@@ -57,14 +57,14 @@ public class DeskripsiWisataAdapter extends RecyclerView.Adapter<DeskripsiWisata
     }
 
     public void filter(String text) {
-        wisataList.clear();
+        artikelList.clear();
         if (text.isEmpty()) {
-            wisataList.addAll(wisataListFull);
+            artikelList.addAll(artikelListFull);
         } else {
             text = text.toLowerCase();
-            for (DeskripsiWisata item : wisataListFull) {
+            for (Artikel item : artikelListFull) {
                 if (item.getTitle().toLowerCase().contains(text)) {
-                    wisataList.add(item);
+                    artikelList.add(item);
                 }
             }
         }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    android:orientation="vertical"
+    android:id="@+id/menu_artikel">
+
+    <ImageView
+        android:id="@+id/imageArtikel"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_margin="20dp" />
+
+    <TextView
+        android:id="@+id/artikel"
+        android:layout_width="244dp"
+        android:layout_height="81dp"
+        android:layout_marginEnd="4dp"
+        android:paddingLeft="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageArtikel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/judul_artikel"
+        android:layout_width="244dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="4dp"
+        android:paddingLeft="30dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageArtikel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
