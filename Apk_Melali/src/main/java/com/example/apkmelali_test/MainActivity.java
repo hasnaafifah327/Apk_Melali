@@ -1,19 +1,11 @@
 package com.example.apkmelali_test;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (isLoggedIn) {
             // Jika sudah login, langsung ke DashboardActivity
-            Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+            Intent intent = new Intent(MainActivity.this, Dashboard_Activity.class);
             startActivity(intent);
             finish(); // Tutup MainActivity
             return;
         }
 
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.auth_activity);
 
         Button loginButton = findViewById(R.id.loginButton);
         Button signupButton = findViewById(R.id.signupButton);

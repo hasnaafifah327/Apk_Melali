@@ -47,5 +47,8 @@ public class Bus implements Serializable {
 
     public int getSubTotalPrice() { return subTotalPrice; }
 
-    public void setSubTotalPrice(int quantity, int price) { this.subTotalPrice = quantity * price; }
+    public void setSubTotalPrice(int quantity, int price) {
+        this.subTotalPrice = quantity * price;
+    }
+
 }

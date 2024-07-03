@@ -11,17 +11,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class CustomAdapter_TiketBus extends BaseAdapter {
+public class TiketBus_CustomAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
-    private List<Bus> busList;
+    public static List<Bus> busList;
     private TextView totalTiketTextView;
 
-    public CustomAdapter_TiketBus(Context context, int layout, List<Bus>  busList, TextView totalTiketTextView) {
+    public TiketBus_CustomAdapter(Context context, int layout, List<Bus> busList, TextView totalTiketTextView) {
         this.context = context;
         this.layout = layout;
-        this.busList = busList;
+        TiketBus_CustomAdapter.busList = busList;
         this.totalTiketTextView = totalTiketTextView;
     }
 
@@ -53,6 +53,7 @@ public class CustomAdapter_TiketBus extends BaseAdapter {
             holder.quantityText = convertView.findViewById(R.id.quantityText);
             holder.addButton = convertView.findViewById(R.id.addButton);
             holder.subtractButton = convertView.findViewById(R.id.subtractButton);
+            holder.quantityView = convertView.findViewById(R.id.quantityView); // TextView for quantity
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -64,11 +65,13 @@ public class CustomAdapter_TiketBus extends BaseAdapter {
         holder.textSubtitle.setText(bus.getSubtitle());
         holder.priceText.setText("Rp. " + bus.getPrice());
         holder.quantityText.setText(String.valueOf(bus.getQuantity()));
+        holder.quantityView.setText("Qty: " + bus.getQuantity()); // Set quantity TextView
 
         holder.addButton.setOnClickListener(v -> {
             int quantity = bus.getQuantity();
             bus.setQuantity(quantity + 1);
             holder.quantityText.setText(String.valueOf(bus.getQuantity()));
+            holder.quantityView.setText("Qty: " + bus.getQuantity()); // Update quantity TextView
             calculateTotalPrice();
         });
 
@@ -77,11 +80,16 @@ public class CustomAdapter_TiketBus extends BaseAdapter {
             if (quantity > 0) {
                 bus.setQuantity(quantity - 1);
                 holder.quantityText.setText(String.valueOf(bus.getQuantity()));
+                holder.quantityView.setText("Qty: " + bus.getQuantity()); // Update quantity TextView
                 calculateTotalPrice();
             }
         });
 
         return convertView;
+    }
+
+    public List<Bus> getBusList() {
+        return busList;
     }
 
     public int calculateTotalPrice() {
@@ -95,6 +103,7 @@ public class CustomAdapter_TiketBus extends BaseAdapter {
     }
 
     static class ViewHolder {
+        TextView quantityView;
         ImageView imageIcon;
         TextView textTitle;
         TextView textSubtitle;
@@ -104,5 +113,3 @@ public class CustomAdapter_TiketBus extends BaseAdapter {
         ImageButton subtractButton;
     }
 }
-
-

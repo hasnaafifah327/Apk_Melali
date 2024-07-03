@@ -14,18 +14,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class DetailTiketWisata extends AppCompatActivity {
+public class DetailTiketWisata_Activity extends AppCompatActivity {
 
     private ImageButton backButton;
     private ListView customTicketView;
-    private TiketWisataAdapter ticketAdapter;
+    private DetailTiketWisata_Adapter ticketAdapter;
     private TextView totalTiket; // tambahkan TextView totalTiket
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detail_tiket_wisata);
+        setContentView(R.layout.detail_tiket_wisata_activity);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -37,14 +37,14 @@ public class DetailTiketWisata extends AppCompatActivity {
         totalTiket = findViewById(R.id.totalTiket); // inisialisasi totalTiket
 
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(DetailTiketWisata.this, PesanTiketWisata.class);
+            Intent intent = new Intent(DetailTiketWisata_Activity.this, PesanTiketBus_Activity.class);
             startActivity(intent);
         });
 
         Intent intent = getIntent();
         ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
 
-        ticketAdapter = new TiketWisataAdapter(this, selectedTickets);
+        ticketAdapter = new DetailTiketWisata_Adapter(this, selectedTickets);
         customTicketView.setAdapter(ticketAdapter);
 
         // Mengambil total harga dari TicketAdapter

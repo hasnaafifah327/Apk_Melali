@@ -2,13 +2,13 @@ package com.example.apkmelali_test;
 
 public class Artikel {
     private String judulArtikel;
-    private String deskripsiArtikel;
-    private int imageResId; // resource ID for the image
+    private String isiArtikel;
+    private int imageArtikel; // resource ID for the image
 
-    public Artikel(String judulArtikel, String deskripsiWisata, int imageResId) {
+    public Artikel(String judulArtikel, String isiArtikel, int imageArtikel) {
         this.judulArtikel = judulArtikel;
-        this.deskripsiArtikel = deskripsiWisata;
-        this.imageResId = imageResId;
+        this.isiArtikel = isiArtikel;
+        this.imageArtikel = imageArtikel;
     }
 
     public String getTitle() {
@@ -16,10 +16,10 @@ public class Artikel {
     }
 
     public String getDescription() {
-        return deskripsiArtikel;
+        return isiArtikel;
     }
 
     public int getImageResId() {
-        return imageResId;
+        return imageArtikel;
     }
 }

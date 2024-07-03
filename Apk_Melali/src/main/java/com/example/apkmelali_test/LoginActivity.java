@@ -3,7 +3,6 @@ package com.example.apkmelali_test;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity);
 
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
@@ -37,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.apply();
 
                 // Arahkan ke DashboardActivity
-                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                Intent intent = new Intent(LoginActivity.this, Dashboard_Activity.class);
                 startActivity(intent);
                 finish(); // Tutup LoginActivity
             } else {

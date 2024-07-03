@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PesanTiketWisata extends AppCompatActivity {
+public class PesanTiketWisata_Activity extends AppCompatActivity {
 
     private ListView customListView;
-    private CustomAdapter_TiketWisata customAdapter;
+    private TiketWisata_CustomAdapter customAdapter;
     private List<Wisata> wisataList;
     private List<Wisata> filteredWisataList;
     private TextView totalTiketTextView;
@@ -26,7 +26,7 @@ public class PesanTiketWisata extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pesan_tiket_wisata);
+        setContentView(R.layout.pesan_tiket_wisata_activity);
 
         customListView = findViewById(R.id.customListView);
         totalTiketTextView = findViewById(R.id.totalTiket);
@@ -36,7 +36,7 @@ public class PesanTiketWisata extends AppCompatActivity {
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PesanTiketWisata.this, DetailTiketWisata.class);
+                Intent intent = new Intent(PesanTiketWisata_Activity.this, DetailTiketWisata_Activity.class);
                 ArrayList<String> selectedTickets = getSelectedTickets();
                 intent.putExtra("SELECTED_TICKETS", selectedTickets);
                 startActivity(intent);
@@ -53,7 +53,7 @@ public class PesanTiketWisata extends AppCompatActivity {
         filteredWisataList = new ArrayList<>(wisataList);
 
         // Set up adapter
-        customAdapter = new CustomAdapter_TiketWisata(this, R.layout.activity_custom_tiket_wisata_list_view, filteredWisataList, totalTiketTextView);
+        customAdapter = new TiketWisata_CustomAdapter(this, R.layout.tiket_wisata_custom, filteredWisataList, totalTiketTextView);
         customListView.setAdapter(customAdapter);
 
         // Set up search view

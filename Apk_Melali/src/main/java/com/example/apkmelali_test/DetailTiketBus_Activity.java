@@ -2,6 +2,7 @@ package com.example.apkmelali_test;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -13,44 +14,55 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class DetailTiketBus extends AppCompatActivity {
+public class DetailTiketBus_Activity extends AppCompatActivity {
 
     private ImageButton backButton;
     private ListView customTicketView;
-    private TiketBusAdapter tiketBusAdapter;
+    private DetailTiketBus_Adapter tiketBusAdapter;
     private TextView totalTiket; // tambahkan TextView totalTiket
+    private Button paymentButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detail_tiket_bus);
+        setContentView(R.layout.detail_tiket_bus_activity);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_detailtiketbus), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // inisialisasi
         backButton = findViewById(R.id.backButton);
         customTicketView = findViewById(R.id.customTicketView);
-        totalTiket = findViewById(R.id.totalTiket); // inisialisasi totalTiket
+        totalTiket = findViewById(R.id.totalTiket);
+        paymentButton = findViewById(R.id.paymentButton);
 
         backButton.setOnClickListener(view -> {
-            Intent intent = new Intent(DetailTiketBus.this, PesanTiketBus.class);
-            startActivity(intent);
+            Intent intentBackButton = new Intent(DetailTiketBus_Activity.this, PesanTiketBus_Activity.class);
+            startActivity(intentBackButton);
         });
 
         Intent intent = getIntent();
         ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
 
-        tiketBusAdapter = new TiketBusAdapter(this, selectedTickets);
+        //tiketBusAdapter inisialisasi dari DetailTiketBus_Adapter untuk nampilin listview
+        tiketBusAdapter = new DetailTiketBus_Adapter(this, selectedTickets);
         customTicketView.setAdapter(tiketBusAdapter);
 
-        // Mengambil total harga dari TicketAdapter
+        // Mengambil total harga dari DetailTiketBus_Adapter
         int totalPrice = tiketBusAdapter.calculateTotalPrice();
         // Menetapkan total harga ke TextView totalTiket
         totalTiket.setText("Total : Rp. " + totalPrice);
+
+        paymentButton.setOnClickListener(view -> {
+            Intent intentPaymentButton = new Intent(DetailTiketBus_Activity.this, DetailOrderBus_Activity.class);
+            startActivity(intentPaymentButton);
+        });
     }
 }
-

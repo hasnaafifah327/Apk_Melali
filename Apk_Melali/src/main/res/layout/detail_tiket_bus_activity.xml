@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_detailtiketbus"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".DetailTiketWisata">
+    tools:context=".DetailTiketBus_Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detail Tiket Wisata"
+                android:text="Detail Tiket Bus"
                 android:textColor="#179467"
                 android:textSize="24sp"
                 android:textStyle="bold">

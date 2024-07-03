@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_tiketbuslistview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".CustomListView_TiketWisata">
+    android:orientation="horizontal">
 
     <ImageView
         android:layout_width="100dp"
@@ -24,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textTitle"
-            android:text="Wisata Tanah Lot"
+            android:text="Bus A"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -32,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textSubtitle"
-            android:text="Kabupaten Tabanan, Bali"
+            android:text="Tabanan-Uluwatu"
             android:textStyle="bold"/>
 
         <LinearLayout
@@ -66,9 +63,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/quantityView"
+            android:layout_marginEnd="16dp"
+            android:text="Jumlah Item : "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/priceText"
             android:layout_marginEnd="16dp"
-            android:text="Rp. 15.000"/>
+            android:text="Rp. 45.000"/>
 
     </LinearLayout>
 

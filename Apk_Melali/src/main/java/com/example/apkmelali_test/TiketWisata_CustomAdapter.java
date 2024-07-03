@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class CustomAdapter_TiketWisata extends BaseAdapter {
+public class TiketWisata_CustomAdapter extends BaseAdapter {
 
     private Context context;
     private int layout;
     private List<Wisata> wisataList;
     private TextView totalTiketTextView;
 
-    public CustomAdapter_TiketWisata(Context context, int layout, List<Wisata> wisataList, TextView totalTiketTextView) {
+    public TiketWisata_CustomAdapter(Context context, int layout, List<Wisata> wisataList, TextView totalTiketTextView) {
         this.context = context;
         this.layout = layout;
         this.wisataList = wisataList;

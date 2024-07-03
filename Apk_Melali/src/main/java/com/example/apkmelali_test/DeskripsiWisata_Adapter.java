@@ -12,35 +12,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.WisataViewHolder> {
+public class DeskripsiWisata_Adapter extends RecyclerView.Adapter<DeskripsiWisata_Adapter.WisataViewHolder> {
 
-    private List<Artikel> artikelList;
-    private List<Artikel> artikelListFull;
+    private List<DeskripsiWisata> wisataList;
+    private List<DeskripsiWisata> wisataListFull;
 
-    public ArtikelAdapter(List<Artikel> artikelList) {
-        this.artikelList = artikelList;
-        artikelListFull = new ArrayList<>(artikelList);
+    public DeskripsiWisata_Adapter(List<DeskripsiWisata> wisataList) {
+        this.wisataList = wisataList;
+        wisataListFull = new ArrayList<>(wisataList);
     }
 
     @NonNull
     @Override
     public WisataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_desc_wisata, parent, false);
+                .inflate(R.layout.item_deskripsi_wisata, parent, false);
         return new WisataViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull WisataViewHolder holder, int position) {
-        Artikel artikel = artikelList.get(position);
-        holder.imageViewWisata.setImageResource(artikel.getImageResId());
-        holder.judul_wisata.setText(artikel.getTitle());
-        holder.deskripsi_wisata.setText(artikel.getDescription());
+        DeskripsiWisata wisata = wisataList.get(position);
+        holder.imageViewWisata.setImageResource(wisata.getImageResId());
+        holder.judul_wisata.setText(wisata.getTitle());
+        holder.deskripsi_wisata.setText(wisata.getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return artikelList.size();
+        return wisataList.size();
     }
 
     public static class WisataViewHolder extends RecyclerView.ViewHolder {
@@ -57,14 +57,14 @@ public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.WisataVi
     }
 
     public void filter(String text) {
-        artikelList.clear();
+        wisataList.clear();
         if (text.isEmpty()) {
-            artikelList.addAll(artikelListFull);
+            wisataList.addAll(wisataListFull);
         } else {
             text = text.toLowerCase();
-            for (Artikel item : artikelListFull) {
+            for (DeskripsiWisata item : wisataListFull) {
                 if (item.getTitle().toLowerCase().contains(text)) {
-                    artikelList.add(item);
+                    wisataList.add(item);
                 }
             }
         }
