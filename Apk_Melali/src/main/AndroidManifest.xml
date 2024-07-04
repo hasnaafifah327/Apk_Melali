@@ -27,11 +27,11 @@
             android:exported="true" />
 
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Dashboard_Activity"
             android:exported="true" />
 
         <activity
-            android:name=".Dashboard_Activity"
+            android:name=".RegisterActivity"
             android:exported="true" />
 
         <activity
@@ -41,17 +41,15 @@
         <activity
             android:name=".DetailTiketWisata_Activity"
             android:exported="true" />
+
         <activity
             android:name=".PesanTiketWisata_Activity"
             android:exported="true" />
 
         <activity
-            android:name=".EditTiketBus_Activity"
-            android:exported="true" />
-
-        <activity
             android:name=".DetailTiketBus_Activity"
             android:exported="true" />
+
         <activity
             android:name=".PesanTiketBus_Activity"
             android:exported="true" />
