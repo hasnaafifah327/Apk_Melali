@@ -39,15 +39,17 @@ public class DetailOrderBus_Activity extends AppCompatActivity {
             startActivity(intentBackButton);
         });
 
+        // Initialize daftar bus
+        busList = new ArrayList<>();
+        busList.add(new Bus(R.drawable.bus1, "BUS A", "Tabanan-Uluwatu", 50000));
+        busList.add(new Bus(R.drawable.bus2, "BUS B", "Denpasar-Ubud", 60000));
+        busList.add(new Bus(R.drawable.bus3, "BUS C", "Jimbaran-Ubud", 70000));
+
         // Ambil nilai dari inputQuantity yang dikirimkan melalui Intent
         Intent intent = getIntent();
-        int newQuantity = intent.getIntExtra("INPUT_QUANTITY", 0);
+        ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
 
-        // Tambahkan data ke busList
-        if (newQuantity > 0) {
-            Bus bus = new Bus(R.drawable.bus1, "Nama Tiket", "Subtitle", newQuantity); // Ganti R.drawable.bus1 dengan sumber gambar yang sesuai
-            busList.add(bus);
-        }
+        // Anda dapat melakukan sesuatu dengan selectedTickets di sini sesuai kebutuhan aplikasi Anda
 
         detailOrderBusAdapter = new DetailOrderBus_Adapter(this, busList);
         customTicketView.setAdapter(detailOrderBusAdapter);
@@ -74,6 +76,7 @@ public class DetailOrderBus_Activity extends AppCompatActivity {
         if (position >= 0 && position < busList.size()) {
             Bus bus = busList.get(position);
             bus.setQuantity(newQuantity);
+            bus.setSubTotalPrice(newQuantity, bus.getPrice());
             detailOrderBusAdapter.notifyDataSetChanged();
             updateTotalPrice();
         }

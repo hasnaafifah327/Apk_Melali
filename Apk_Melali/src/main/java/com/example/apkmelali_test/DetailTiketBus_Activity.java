@@ -31,12 +31,6 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.detail_tiket_bus_activity);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_detailtiketbus), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
         // inisialisasi
         backButton = findViewById(R.id.backButton);
         customTicketView = findViewById(R.id.customTicketView);
@@ -51,7 +45,7 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
 
-        //tiketBusAdapter inisialisasi dari DetailTiketBus_Adapter untuk nampilin listview
+        // tiketBusAdapter inisialisasi dari DetailTiketBus_Adapter untuk menampilkan ListView
         tiketBusAdapter = new DetailTiketBus_Adapter(this, selectedTickets);
         customTicketView.setAdapter(tiketBusAdapter);
 
@@ -62,6 +56,7 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
 
         paymentButton.setOnClickListener(view -> {
             Intent intentPaymentButton = new Intent(DetailTiketBus_Activity.this, DetailOrderBus_Activity.class);
+            intentPaymentButton.putStringArrayListExtra("SELECTED_TICKETS", selectedTickets); // Menambahkan selectedTickets ke Intent
             startActivity(intentPaymentButton);
         });
     }

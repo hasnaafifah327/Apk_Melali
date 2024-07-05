@@ -2,11 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_detailorderbus"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".DetailTiketBus_Activity">
+    android:background="@drawable/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +50,7 @@
 
         <LinearLayout
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="500dp"
             android:layout_marginTop="50dp"
             android:orientation="vertical"
             android:padding="16dp"
@@ -84,19 +82,19 @@
             <ListView
                 android:id="@+id/customTicketView"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="350dp"
                 android:layout_marginTop="4dp"/>
 
             <TextView
                 android:id="@+id/totalTiket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:text="Total : Rp. 30.000"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 

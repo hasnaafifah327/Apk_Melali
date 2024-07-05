@@ -12,12 +12,13 @@ import java.util.List;
 
 public class DetailTiketBus_Adapter extends BaseAdapter {
     private Context context; //Untuk menyediakan akses ke berbagai aspek dari aplikasi Android yang sedang berjalan.
-    private ArrayList<String> tickets; //menyimpan daftar tiket dalam bentuk array list
+    private ArrayList<String> tickets; //menyimpan daftar tiket dalam bentuk array list di variable tickets
 
     public DetailTiketBus_Adapter(Context context, ArrayList<String> tickets) {
         this.context = context;
         this.tickets = tickets;
     }
+
     //untuk mengetahui berapa banyak item yang harus ditampilkan dalam daftar ArrayList<String> tickets
     @Override
     public int getCount() {

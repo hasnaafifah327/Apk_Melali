@@ -40,7 +40,7 @@ public class DetailOrderBus_Adapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.order_bus_list_view, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.detail_order_bus_list_view, parent, false);
             holder = new ViewHolder();
             holder.titleView = convertView.findViewById(R.id.titleView);
             holder.quantityView = convertView.findViewById(R.id.quantityView);
@@ -91,6 +91,7 @@ public class DetailOrderBus_Adapter extends BaseAdapter {
             // Save new quantity
             int newQuantity = Integer.parseInt(inputQuantity.getText().toString());
             bus.setQuantity(newQuantity);
+            bus.setSubTotalPrice(newQuantity, bus.getPrice());
             notifyDataSetChanged(); // Update ListView
             ((DetailOrderBus_Activity) context).editItem(position, newQuantity); // Call activity method to update total price
             dialog.dismiss();
