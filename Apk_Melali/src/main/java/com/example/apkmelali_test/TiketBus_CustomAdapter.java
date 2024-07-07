@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TiketBus_CustomAdapter extends BaseAdapter {
@@ -17,12 +18,14 @@ public class TiketBus_CustomAdapter extends BaseAdapter {
     private int layout;
     public static List<Bus> busList;
     private TextView totalTiketTextView;
+    public ArrayList<PemesananTiket> pemesananTikets = new ArrayList<PemesananTiket>();
 
-    public TiketBus_CustomAdapter(Context context, int layout, List<Bus> busList, TextView totalTiketTextView) {
+    public TiketBus_CustomAdapter(Context context, int layout, List<Bus> busList, TextView totalTiketTextView, ArrayList<PemesananTiket> pemesananTiket) {
         this.context = context;
         this.layout = layout;
         TiketBus_CustomAdapter.busList = busList;
         this.totalTiketTextView = totalTiketTextView;
+        this.pemesananTikets = pemesananTiket;
     }
 
     @Override
@@ -68,19 +71,29 @@ public class TiketBus_CustomAdapter extends BaseAdapter {
         holder.quantityView.setText("Qty: " + bus.getQuantity()); // Set quantity TextView
 
         holder.addButton.setOnClickListener(v -> {
-            int quantity = bus.getQuantity();
-            bus.setQuantity(quantity + 1);
-            holder.quantityText.setText(String.valueOf(bus.getQuantity()));
-            holder.quantityView.setText("Qty: " + bus.getQuantity()); // Update quantity TextView
+//            int quantity = bus.getQuantity();
+//            bus.setQuantity(quantity + 1);
+//            holder.quantityText.setText(String.valueOf(bus.getQuantity()));
+//            holder.quantityView.setText("Qty: " + bus.getQuantity()); // Update quantity TextView
+            pemesananTikets.get(position).setQuantity(pemesananTikets.get(position).getQuantity()+1);
+            pemesananTikets.get(position).setBus(busList.get(position));
+            holder.quantityText.setText(String.valueOf(pemesananTikets.get(position).getQuantity()));
+            holder.quantityView.setText("Qty: " + (pemesananTikets.get(position).getQuantity()));
             calculateTotalPrice();
         });
 
         holder.subtractButton.setOnClickListener(v -> {
             int quantity = bus.getQuantity();
-            if (quantity > 0) {
-                bus.setQuantity(quantity - 1);
-                holder.quantityText.setText(String.valueOf(bus.getQuantity()));
-                holder.quantityView.setText("Qty: " + bus.getQuantity()); // Update quantity TextView
+//            if (quantity > 0) {
+////                bus.setQuantity(quantity - 1);
+////                holder.quantityText.setText(String.valueOf(bus.getQuantity()));
+////                holder.quantityView.setText("Qty: " + bus.getQuantity()); // Update quantity TextView
+//            }
+            if(pemesananTikets.get(position).getQuantity() > 0){
+                pemesananTikets.get(position).setQuantity(pemesananTikets.get(position).getQuantity()-1);
+                pemesananTikets.get(position).setBus(busList.get(position));
+                holder.quantityText.setText(String.valueOf(pemesananTikets.get(position).getQuantity()));
+                holder.quantityView.setText("Qty: " + (pemesananTikets.get(position).getQuantity()));
                 calculateTotalPrice();
             }
         });
@@ -94,9 +107,12 @@ public class TiketBus_CustomAdapter extends BaseAdapter {
 
     public int calculateTotalPrice() {
         int totalPrice = 0;
-        for (Bus bus : busList) {
-            bus.setSubTotalPrice(bus.getQuantity(), bus.getPrice());
-            totalPrice += bus.getSubTotalPrice();
+//        for (Bus bus : busList) {
+//            bus.setSubTotalPrice(bus.getQuantity(), bus.getPrice());
+//            totalPrice += bus.getSubTotalPrice();
+//        }
+        for(PemesananTiket tiket : pemesananTikets){
+            totalPrice += tiket.getQuantity() * tiket.getBus().getPrice();
         }
         totalTiketTextView.setText("Total Tiket : Rp. " + totalPrice);
         return totalPrice;

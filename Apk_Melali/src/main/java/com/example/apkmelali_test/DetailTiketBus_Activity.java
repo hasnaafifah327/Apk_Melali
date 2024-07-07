@@ -9,12 +9,8 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DetailTiketBus_Activity extends AppCompatActivity {
 
@@ -23,8 +19,8 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
     private DetailTiketBus_Adapter tiketBusAdapter;
     private TextView totalTiket; // tambahkan TextView totalTiket
     private Button paymentButton;
-
-
+//    private Button keranjangButton;
+    private AppDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +32,8 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
         customTicketView = findViewById(R.id.customTicketView);
         totalTiket = findViewById(R.id.totalTiket);
         paymentButton = findViewById(R.id.paymentButton);
+//        keranjangButton = findViewById(R.id.keranjangButton);
+//        db = AppDatabase.getDatabase(this);
 
         backButton.setOnClickListener(view -> {
             Intent intentBackButton = new Intent(DetailTiketBus_Activity.this, PesanTiketBus_Activity.class);
@@ -43,10 +41,11 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
+//        ArrayList<String> selectedTickets = intent.getStringArrayListExtra("SELECTED_TICKETS");
+        ArrayList<PemesananTiket> pemesananTikets = (ArrayList<PemesananTiket>) intent.getSerializableExtra("PEMESANAN_TIKETS");
 
         // tiketBusAdapter inisialisasi dari DetailTiketBus_Adapter untuk menampilkan ListView
-        tiketBusAdapter = new DetailTiketBus_Adapter(this, selectedTickets);
+        tiketBusAdapter = new DetailTiketBus_Adapter(this, pemesananTikets);
         customTicketView.setAdapter(tiketBusAdapter);
 
         // Mengambil total harga dari DetailTiketBus_Adapter
@@ -55,9 +54,24 @@ public class DetailTiketBus_Activity extends AppCompatActivity {
         totalTiket.setText("Total : Rp. " + totalPrice);
 
         paymentButton.setOnClickListener(view -> {
-            Intent intentPaymentButton = new Intent(DetailTiketBus_Activity.this, DetailOrderBus_Activity.class);
-            intentPaymentButton.putStringArrayListExtra("SELECTED_TICKETS", selectedTickets); // Menambahkan selectedTickets ke Intent
+            Intent intentPaymentButton = new Intent(DetailTiketBus_Activity.this, Bayar.class);
+            intentPaymentButton.putExtra("PEMESANAN_TIKETS", pemesananTikets);
+//            intentPaymentButton.putStringArrayListExtra("SELECTED_TICKETS", selectedTickets); // Menambahkan selectedTickets ke Intent
             startActivity(intentPaymentButton);
         });
+
+//        keranjangButton.setOnClickListener(view -> {
+//            try {
+////                new InsertUserAsyncTask(db).execute(new User("John"));
+//                saveTicketsToDatabase(selectedTickets);
+////                Intent keranjangButton = new Intent(DetailTiketBus_Activity.this, Dashboard_Activity.class);
+////                startActivity(keranjangButton);
+//
+//                // Show the success message
+//                Toast.makeText(DetailTiketBus_Activity.this, "Berhasil Ditambahkan ke Keranjang", Toast.LENGTH_SHORT).show();
+//            } catch (Exception e) {
+//                Toast.makeText(this, "Error 1: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 }

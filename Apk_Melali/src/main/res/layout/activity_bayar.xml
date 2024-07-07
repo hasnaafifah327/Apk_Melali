@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_detailtiketbus"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".DetailTiketBus_Activity">
+    tools:context=".Bayar">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             <ImageButton
                 android:id="@+id/backButton"
                 android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_height="49dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Kembali"
                 android:src="@drawable/arrow_back" />
@@ -33,11 +33,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detail Tiket Bus"
+                android:text="Bayar Tiket Bus"
                 android:textColor="#179467"
                 android:textSize="24sp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
 
         </LinearLayout>
 
@@ -58,7 +57,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Info Pemesan"
+                android:text="Info Pembayaran"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -74,28 +73,35 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama : Burhan"
+                android:text="Silakan melakukan pembayaran melalui:"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No HP : 08112234539"
+                android:text="Rekening : BNI"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email : burhan@gmail.com"
+                android:text="No Rek : 0791774993"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alamat : Badung, Bali"
+                android:text="Nama : Hasna Afifah"
+                android:textColor="@color/black"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Konfirmasi : 082145401763 (SMS/WA)"
                 android:textColor="@color/black"
                 android:layout_marginTop="4dp"/>
 
@@ -116,14 +122,14 @@
                 android:layout_marginBottom="8dp"
                 android:background="@color/black"/>
 
-            <ListView
-                android:id="@+id/customTicketView"
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_marginTop="4dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </ImageView>
 
             <TextView
-                android:id="@+id/totalTiket"
+                android:id="@+id/totalBayar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -156,7 +162,7 @@
             android:layout_marginBottom="16dp"
             android:layout_gravity="center"
             android:backgroundTint="#179467"
-            android:text="Pembayaran"
+            android:text="Konfirmasi Pembayaran"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"/>

@@ -41,9 +41,9 @@ public class DetailOrderBus_Activity extends AppCompatActivity {
 
         // Initialize daftar bus
         busList = new ArrayList<>();
-        busList.add(new Bus(R.drawable.bus1, "BUS A", "Tabanan-Uluwatu", 50000));
-        busList.add(new Bus(R.drawable.bus2, "BUS B", "Denpasar-Ubud", 60000));
-        busList.add(new Bus(R.drawable.bus3, "BUS C", "Jimbaran-Ubud", 70000));
+        busList.add(new Bus(1, R.drawable.bus1, "BUS A", "Tabanan-Uluwatu", 50000));
+        busList.add(new Bus(2, R.drawable.bus2, "BUS B", "Denpasar-Ubud", 60000));
+        busList.add(new Bus(3, R.drawable.bus3, "BUS C", "Jimbaran-Ubud", 70000));
 
         // Ambil nilai dari inputQuantity yang dikirimkan melalui Intent
         Intent intent = getIntent();

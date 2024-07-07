@@ -2,6 +2,7 @@ package com.example.apkmelali_test;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -21,6 +22,7 @@ public class PesanTiketBus_Activity extends AppCompatActivity {
     private TextView totalTiket;
     private Button checkoutButton;
     private SearchView simpleSearchView;
+    private ArrayList<PemesananTiket> pemesananTikets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +39,31 @@ public class PesanTiketBus_Activity extends AppCompatActivity {
         checkoutButton.setOnClickListener(view -> {
             Intent intent = new Intent(PesanTiketBus_Activity.this, DetailTiketBus_Activity.class);
             ArrayList<String> selectedTickets = getSelectedTickets(); // Menginisialisasi variabel selectedTickets dengan hasil dari getSelectedTickets() kemudian datanya dikirim ke DetailTiketBus
-            intent.putExtra("SELECTED_TICKETS", selectedTickets);
+            for (PemesananTiket tiket : pemesananTikets) {
+                Log.d("PesanTiketBus_Activity", "Bus ID: " + tiket.getBus().getId());
+                Log.d("PesanTiketBus_Activity", "Bus Quantity: " + tiket.getQuantity());
+            }
+
+//            intent.putExtra("SELECTED_TICKETS", selectedTickets);
+            intent.putExtra("PEMESANAN_TIKETS", pemesananTikets);
             startActivity(intent); //dibuat dan diisi dengan data tiket yang ingin dikirim
         });
 
         // Initialize daftar bus
         busList = new ArrayList<>();
-        busList.add(new Bus(R.drawable.bus1, "BUS A", "Tabanan-Uluwatu", 50000));
-        busList.add(new Bus(R.drawable.bus2, "BUS B", "Denpasar-Ubud", 60000));
-        busList.add(new Bus(R.drawable.bus3, "BUS C", "Jimbaran-Ubud", 70000));
+        busList.add(new Bus(1, R.drawable.bus1, "BUS A", "Tabanan-Uluwatu", 50000));
+        busList.add(new Bus(2, R.drawable.bus2, "BUS B", "Denpasar-Ubud", 60000));
+        busList.add(new Bus(3, R.drawable.bus3, "BUS C", "Jimbaran-Ubud", 70000));
+        pemesananTikets = new ArrayList<>();
+        for (Bus bus : busList){
+            pemesananTikets.add(new PemesananTiket(bus, 0));
+        }
 
         // Membuat salinan dari busList ke filteredBusList, agar filteredBusList bisa dimodifikasi untuk pencarian tanpa mempengaruhi busList
         filteredBusList = new ArrayList<>(busList);
 
         // Set up adapter untuk menghubungkan data dari Bus, agar bisa tampil di customListView
-        customAdapter = new TiketBus_CustomAdapter(this, R.layout.tiket_bus_custom, filteredBusList, totalTiket);
+        customAdapter = new TiketBus_CustomAdapter(this, R.layout.tiket_bus_custom, filteredBusList, totalTiket, pemesananTikets);
         customListView.setAdapter(customAdapter);
 
         // Set up search view
@@ -88,7 +100,7 @@ public class PesanTiketBus_Activity extends AppCompatActivity {
         ArrayList<String> selectedTickets = new ArrayList<>();
         for (Bus bus : busList) {
             if (bus.getQuantity() > 0) {
-                selectedTickets.add(bus.getTitle() + " - Rp. " + bus.getSubTotalPrice());
+                selectedTickets.add(bus.getTitle() + ";" + bus.getPrice() + ";" + bus.getQuantity() + ";" + bus.getSubTotalPrice());
             }
         }
         return selectedTickets;
@@ -103,6 +115,5 @@ public class PesanTiketBus_Activity extends AppCompatActivity {
         for (Bus bus : busList) {
             totalQuantity += bus.getQuantity();
         }
-
     }
 }
