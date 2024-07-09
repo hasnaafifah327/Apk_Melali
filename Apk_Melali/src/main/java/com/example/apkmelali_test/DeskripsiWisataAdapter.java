@@ -1,5 +1,6 @@
 package com.example.apkmelali_test;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeskripsiWisata_Adapter extends RecyclerView.Adapter<DeskripsiWisata_Adapter.WisataViewHolder> {
+public class DeskripsiWisataAdapter extends RecyclerView.Adapter<DeskripsiWisataAdapter.WisataViewHolder> {
 
     private List<DeskripsiWisata> wisataList;
     private List<DeskripsiWisata> wisataListFull;
 
-    public DeskripsiWisata_Adapter(List<DeskripsiWisata> wisataList) {
+    public DeskripsiWisataAdapter(List<DeskripsiWisata> wisataList) {
         this.wisataList = wisataList;
         wisataListFull = new ArrayList<>(wisataList);
     }
@@ -36,6 +37,22 @@ public class DeskripsiWisata_Adapter extends RecyclerView.Adapter<DeskripsiWisat
         holder.imageViewWisata.setImageResource(wisata.getImageResId());
         holder.judul_wisata.setText(wisata.getTitle());
         holder.deskripsi_wisata.setText(wisata.getDescription());
+
+        // Menampilkan cuplikan deskripsi
+        String fullDescription = wisata.getDescription();
+        if (fullDescription.length() > 100) {
+            holder.deskripsi_wisata.setText(fullDescription.substring(0, 100) + "...");
+        } else {
+            holder.deskripsi_wisata.setText(fullDescription);
+        }
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DetailDeskripsiWisataActivity.class);
+            intent.putExtra("judul", wisata.getTitle());
+            intent.putExtra("deskripsi", wisata.getDescription());
+            intent.putExtra("imageResId", wisata.getImageResId());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

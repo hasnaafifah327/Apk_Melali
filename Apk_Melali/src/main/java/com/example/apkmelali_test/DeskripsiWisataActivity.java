@@ -12,31 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeskripsiWisata_Activity extends AppCompatActivity {
+public class DeskripsiWisataActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private DeskripsiWisata_Adapter wisataAdapter;
+    private DeskripsiWisataAdapter wisataAdapter;
     private SearchView searchView;
     private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.deskripsi_wisata_activity);
+        setContentView(R.layout.activity_desc_wisata);
 
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.search_view);
         backButton = findViewById(R.id.back_button);
 
         List<DeskripsiWisata> wisataList = new ArrayList<>();
-        // Tambahkan data ke wisataList
-        wisataList.add(new DeskripsiWisata("Tanah Lot", "Description 1", R.drawable.tanah_lot));
-        wisataList.add(new DeskripsiWisata("Pantai Sanur", "Description 2", R.drawable.sanur));
-        wisataList.add(new DeskripsiWisata("Bedugul", "Description 3", R.drawable.bedugul));
-        wisataList.add(new DeskripsiWisata("Pantai Bingin", "Description 4", R.drawable.pantai_bingin));
-        wisataList.add(new DeskripsiWisata("Pantai Pandawa", "Description 5", R.drawable.pandawa));
-        wisataList.add(new DeskripsiWisata("Pantai Jimbaran", "Description 5", R.drawable.pantai_jimbaran));
+        // Tambahkan data ke wisataList dari file XML
+        wisataList.add(new DeskripsiWisata("Wisata Tanah Lot", getString(R.string.description_tanah_lot), R.drawable.tanah_lot));
+        wisataList.add(new DeskripsiWisata("Wisata Pantai Sanur", getString(R.string.description_pantai_sanur), R.drawable.sanur));
+        wisataList.add(new DeskripsiWisata("Wisata Bedugul", getString(R.string.description_bedugul), R.drawable.bedugul));
+        wisataList.add(new DeskripsiWisata("Wisata Pantai Bingin", getString(R.string.description_pantai_bingin), R.drawable.pantai_bingin));
+        wisataList.add(new DeskripsiWisata("Wisata Pantai Pandawa", getString(R.string.description_pantai_pandawa), R.drawable.pandawa));
+        wisataList.add(new DeskripsiWisata("Wisata Pantai Jimbaran", getString(R.string.description_pantai_jimbaran), R.drawable.pantai_jimbaran));
 
-        wisataAdapter = new DeskripsiWisata_Adapter(wisataList);
+        wisataAdapter = new DeskripsiWisataAdapter(wisataList);
         recyclerView.setAdapter(wisataAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -51,13 +51,12 @@ public class DeskripsiWisata_Activity extends AppCompatActivity {
                 wisataAdapter.filter(newText);
                 return false;
             }
-
         });
 
         // Penginisialisasian backButton harus dilakukan setelah setContentView()
         backButton.setOnClickListener(v -> {
             // Buat intent untuk kembali ke halaman activity lain
-            Intent intent = new Intent(DeskripsiWisata_Activity.this, Dashboard_Activity.class);
+            Intent intent = new Intent(DeskripsiWisataActivity.this, Dashboard_Activity.class);
             startActivity(intent);
         });
     }

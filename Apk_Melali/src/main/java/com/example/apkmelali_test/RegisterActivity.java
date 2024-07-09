@@ -1,5 +1,6 @@
 package com.example.apkmelali_test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText emailEditText, usernameEditText, noHpEditText, passwordEditText;
     private Button registerButton;
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
         noHpEditText = findViewById(R.id.noHp);
         passwordEditText = findViewById(R.id.password);
         registerButton = findViewById(R.id.registerButton);
+
+        db = AppDatabase.getDatabase(this);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,8 +40,18 @@ public class RegisterActivity extends AppCompatActivity {
                 if (email.isEmpty() || username.isEmpty() || noHp.isEmpty() || password.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Handle the registration logic here
-                    Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                    // Insert data into the database
+                    new Thread(() -> {
+                        User user = new User(email, username, noHp, password);
+                        db.userDao().insert(user);
+                        runOnUiThread(() -> {
+                            Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                            // Redirect to login activity
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish(); // Close RegisterActivity
+                        });
+                    }).start();
                 }
             }
         });

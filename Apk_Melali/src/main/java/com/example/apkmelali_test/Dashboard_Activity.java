@@ -25,13 +25,13 @@ public class Dashboard_Activity extends AppCompatActivity {
 
         LinearLayout menu_desc_wisata = findViewById(R.id.btn_deskripsi_wisata);
         menu_desc_wisata.setOnClickListener(v -> {
-            Intent intent1 = new Intent(Dashboard_Activity.this, DeskripsiWisata_Activity.class);
+            Intent intent1 = new Intent(Dashboard_Activity.this, DeskripsiWisataActivity.class);
             startActivity(intent1);
         });
 
         LinearLayout menu_pesan_tiket_wisata = findViewById(R.id.btn_tiket_wisata);
         menu_pesan_tiket_wisata.setOnClickListener(v -> {
-            Intent intent2 = new Intent(Dashboard_Activity.this, PesanTiketWisata_Activity.class);
+            Intent intent2 = new Intent(Dashboard_Activity.this, TicketOrder.class);
             startActivity(intent2);
         });
 
@@ -43,7 +43,7 @@ public class Dashboard_Activity extends AppCompatActivity {
 
         LinearLayout menu_artikel = findViewById(R.id.btn_artikel);
          menu_artikel.setOnClickListener(v -> {
-            Intent intent4 = new Intent(Dashboard_Activity.this, Artikel_Activity.class);
+            Intent intent4 = new Intent(Dashboard_Activity.this, ArtikelActivity.class);
             startActivity(intent4);
         });
     }

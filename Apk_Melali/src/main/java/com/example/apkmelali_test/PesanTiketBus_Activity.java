@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class PesanTiketBus_Activity extends AppCompatActivity {
     private Button checkoutButton;
     private SearchView simpleSearchView;
     private ArrayList<PemesananTiket> pemesananTikets;
+    private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,14 @@ public class PesanTiketBus_Activity extends AppCompatActivity {
         totalTiket = findViewById(R.id.totalTiket);
         checkoutButton = findViewById(R.id.checkoutButton);
         simpleSearchView = findViewById(R.id.simpleSearchView);
+        backButton = findViewById(R.id.backButton);
 
         //objek ArrayList di inisialisasi, dan ArrayList selectedTickets dipake utk menyimpan data tiket
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(PesanTiketBus_Activity.this, Dashboard_Activity.class);
+            startActivity(intent);
+        });
+
         checkoutButton.setOnClickListener(view -> {
             Intent intent = new Intent(PesanTiketBus_Activity.this, DetailTiketBus_Activity.class);
             ArrayList<String> selectedTickets = getSelectedTickets(); // Menginisialisasi variabel selectedTickets dengan hasil dari getSelectedTickets() kemudian datanya dikirim ke DetailTiketBus

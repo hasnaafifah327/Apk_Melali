@@ -12,31 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Artikel_Activity extends AppCompatActivity {
+public class ArtikelActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private Artikel_Adapter artikelAdapter;
+    private ArtikelAdapter artikelAdapter;
     private SearchView searchView;
     private ImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.artikel_activity);
+        setContentView(R.layout.activity_artikel);
 
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.search_view);
         backButton = findViewById(R.id.back_button);
 
         List<Artikel> artikelList = new ArrayList<>();
-        // Tambahkan data ke wisataList
-        artikelList.add(new Artikel("Tanah Lot", "Description 1", R.drawable.tanah_lot));
-        artikelList.add(new Artikel("Pantai Sanur", "Description 2", R.drawable.sanur));
-        artikelList.add(new Artikel("Bedugul", "Description 3", R.drawable.bedugul));
-        artikelList.add(new Artikel("Pantai Bingin", "Description 4", R.drawable.pantai_bingin));
-        artikelList.add(new Artikel("Pantai Pandawa", "Description 5", R.drawable.pandawa));
-        artikelList.add(new Artikel("Pantai Jimbaran", "Description 5", R.drawable.pantai_jimbaran));
+        artikelList.add(new Artikel("Uluwatu Temple, Wisata dengan Spot Sunset Terbaik di Bali", getString(R.string.artikel_tanah_lot), R.drawable.tanah_lot));
+        artikelList.add(new Artikel("Menikmati Keindahan Surga Bahari di Pantai Sanur Bali", getString(R.string.artikel_pantai_sanur), R.drawable.sanur));
+        artikelList.add(new Artikel("Keindahan Wisata Bedugul", getString(R.string.artikel_bedugul), R.drawable.bedugul));
+        artikelList.add(new Artikel("Pantai Bingin, Wisata Pantai di Selatan Bali", getString(R.string.artikel_pantai_bingin), R.drawable.pantai_bingin));
+        artikelList.add(new Artikel("Pandawa Beach, wisata pantai di Tebing Bali", getString(R.string.artikel_pantai_pandawa), R.drawable.pandawa));
+        artikelList.add(new Artikel("Pantai Jimbaran, pusatnya wisata Seefood ", getString(R.string.artikel_pantai_jimbaran), R.drawable.pantai_jimbaran));
 
-        artikelAdapter = new Artikel_Adapter(artikelList);
+        artikelAdapter = new ArtikelAdapter(artikelList, this);
         recyclerView.setAdapter(artikelAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -51,13 +50,10 @@ public class Artikel_Activity extends AppCompatActivity {
                 artikelAdapter.filter(newText);
                 return false;
             }
-
         });
 
-        // Penginisialisasian backButton harus dilakukan setelah setContentView()
         backButton.setOnClickListener(v -> {
-            // Buat intent untuk kembali ke halaman activity lain
-            Intent intent = new Intent(Artikel_Activity.this, Dashboard_Activity.class);
+            Intent intent = new Intent(ArtikelActivity.this, Dashboard_Activity.class);
             startActivity(intent);
         });
     }

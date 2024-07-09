@@ -1,5 +1,7 @@
 package com.example.apkmelali_test;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Artikel_Adapter extends RecyclerView.Adapter<Artikel_Adapter.WisataViewHolder> {
+public class ArtikelAdapter extends RecyclerView.Adapter<ArtikelAdapter.WisataViewHolder> {
 
     private List<Artikel> artikelList;
     private List<Artikel> artikelListFull;
+    private Context context;
 
-    public Artikel_Adapter(List<Artikel> artikelList) {
+    public ArtikelAdapter(List<Artikel> artikelList, Context context) {
         this.artikelList = artikelList;
+        this.context = context;
         artikelListFull = new ArrayList<>(artikelList);
     }
 
@@ -33,9 +37,24 @@ public class Artikel_Adapter extends RecyclerView.Adapter<Artikel_Adapter.Wisata
     @Override
     public void onBindViewHolder(@NonNull WisataViewHolder holder, int position) {
         Artikel artikel = artikelList.get(position);
-        holder.imageArtikel.setImageResource(artikel.getImageResId());
+        holder.imageViewArtikel.setImageResource(artikel.getImageResId());
         holder.judulArtikel.setText(artikel.getTitle());
-        holder.isiArtikel.setText(artikel.getDescription());
+
+        // Menampilkan cuplikan deskripsi
+        String fullDescription = artikel.getDescription();
+        if (fullDescription.length() > 100) {
+            holder.deskripsiArtikel.setText(fullDescription.substring(0, 100) + "...");
+        } else {
+            holder.deskripsiArtikel.setText(fullDescription);
+        }
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailArtikelActivity.class);
+            intent.putExtra("title", artikel.getTitle());
+            intent.putExtra("description", artikel.getDescription());
+            intent.putExtra("imageResId", artikel.getImageResId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -44,15 +63,15 @@ public class Artikel_Adapter extends RecyclerView.Adapter<Artikel_Adapter.Wisata
     }
 
     public static class WisataViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageArtikel;
+        ImageView imageViewArtikel;
         TextView judulArtikel;
-        TextView isiArtikel;
+        TextView deskripsiArtikel;
 
         public WisataViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageArtikel = itemView.findViewById(R.id.imageArtikel);
-            judulArtikel = itemView.findViewById(R.id.judulArtikel);
-            isiArtikel = itemView.findViewById(R.id.isiArtikel);
+            imageViewArtikel = itemView.findViewById(R.id.imageArtikel);
+            judulArtikel = itemView.findViewById(R.id.judul_artikel);
+            deskripsiArtikel = itemView.findViewById(R.id.artikel);
         }
     }
 

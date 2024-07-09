@@ -2,7 +2,7 @@ package com.example.apkmelali_test;
 
 import java.io.Serializable;
 
-public class Wisata implements Serializable {
+public class Place implements Serializable {
     private int image;
     private String title;
     private String subtitle;
@@ -10,7 +10,7 @@ public class Wisata implements Serializable {
     private int quantity;
     private int subTotalPrice;
 
-    public Wisata(int image, String title, String subtitle, int price) {
+    public Place(int image, String title, String subtitle, int price) {
         this.image = image;
         this.title = title;
         this.subtitle = subtitle;
@@ -49,3 +49,4 @@ public class Wisata implements Serializable {
 
     public void setSubTotalPrice(int quantity, int price) { this.subTotalPrice = quantity * price; }
 }
+

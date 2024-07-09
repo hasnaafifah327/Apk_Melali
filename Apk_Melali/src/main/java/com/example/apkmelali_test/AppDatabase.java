@@ -6,10 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Invoice.class, TiketOrder.class}, version = 1)
+@Database(entities = {Invoice.class, TiketOrder.class, Ticket.class, User.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract InvoiceDao invoiceDao();
     public abstract TiketOrderDao tiketOrderDao();
+    public abstract TicketDao ticketDao();
+    public abstract UserDao userDao();
 
     private static volatile AppDatabase INSTANCE;
 
