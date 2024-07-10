@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 public class DetailTiketBus_Adapter extends BaseAdapter {
     private Context context; //Untuk menyediakan akses ke berbagai aspek dari aplikasi Android yang sedang berjalan.
-//    private ArrayList<String> tickets; //menyimpan daftar tiket dalam bentuk array list di variable tickets
     private ArrayList<PemesananTiket> pemesananTikets;
 
     public DetailTiketBus_Adapter(Context context, ArrayList<PemesananTiket> pemesananTikets /*ArrayList<String> tickets*/) {
         this.context = context;
-//        this.tickets = tickets;
         this.pemesananTikets = pemesananTikets;
     }
 
@@ -56,14 +54,7 @@ public class DetailTiketBus_Adapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-//        // Mengambil data dari ArrayList<String> tickets
-//        // pada posisi tertentu, dan memecah string berdasarkan delimiter
-//        String ticket = tickets.get(position);
-//        String[] parts = ticket.split(";");
-//        String title = parts[0];
-//        String subTotal = "Rp. " + parts[1];
         PemesananTiket tiket = pemesananTikets.get(position);
-
 
         //Mengatur teks
         holder.titleView.setText(tiket.getBus().getTitle());
@@ -89,11 +80,7 @@ public class DetailTiketBus_Adapter extends BaseAdapter {
 
     public int calculateTotalPrice() {
         int totalPrice = 0;
-//        for (String ticket : tickets) {
-//            String[] parts = ticket.split(";");
-//            int subTotalPrice = Integer.parseInt(parts[3]);
-//            totalPrice += subTotalPrice;
-//        }
+
         for(PemesananTiket tiket : pemesananTikets){
             totalPrice += tiket.getQuantity() * tiket.getBus().getPrice();
         }
